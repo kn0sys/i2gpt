@@ -11,7 +11,7 @@ gpt with no js or trackers
 
 * install [ollama](https://ollama.com/download)
 * `cd models`
-* download the [zephyr 7b-Q5](https://huggingface.co/TheBloke/zephyr-7B-beta-pl-GGUF/blob/main/zephyr-7b-beta-pl.Q5_K_M.gguf) model from huggingface
+* download the [zephyr 7b-Q5](https://huggingface.co/TheBloke/zephyr-7B-beta-GGUF/blob/main/zephyr-7b-beta.Q5_K_M.gguf) model from huggingface
 * `ollama create zephyr-local -f Modelfile`
 * `ollama list`
 * `ollama run zephyr-local`
