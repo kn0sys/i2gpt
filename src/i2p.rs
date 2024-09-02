@@ -34,6 +34,10 @@ where P: AsRef<Path>, {
 
 /// Start router and automatic i2p tunnel creation
 pub fn start_tunnel() -> Result<(), j4rs::errors::J4RsError> {
+    let str_app_port = std::env::var("I2GPT_PORT").unwrap_or(String::from("3141"));
+    let app_port: u16 = str_app_port.parse::<u16>().unwrap_or(3141);
+    let str_http_proxy = std::env::var("I2PGPT_PROXY_PORT").unwrap_or(String::from("4455"));
+    let http_proxy: u16 = str_http_proxy.parse::<u16>().unwrap_or(4455);
     log::info!("starting j4i2prs...");
     let r = rw::Wrapper::create_router()?;
     let mut l: Listener = Default::default();
@@ -59,7 +63,7 @@ pub fn start_tunnel() -> Result<(), j4rs::errors::J4RsError> {
             if !l.is_running {
                 let is_router_on = r.is_running().unwrap_or_default();
                 if !is_router_on {
-                    log::info!("router is not on");
+                    log::info!("router is warming up, please wait...");
                 }
                 std::thread::sleep(std::time::Duration::from_secs(60));
                 if is_router_on {
@@ -73,12 +77,12 @@ pub fn start_tunnel() -> Result<(), j4rs::errors::J4RsError> {
                                 log::info!("this port was randomly assigned, keep it private");
                                 l.is_running = true;
                                 // start the http proxy
-                                let http_proxy: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), 4455, tc::TunnelType::Http)
+                                let http_proxy: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), http_proxy, tc::TunnelType::Http)
                                     .unwrap_or_default();
                                 let _ = http_proxy.start();
                                 log::info!("http proxy on port {}", http_proxy.get_port());
                                 // start the tunnel
-                                let app_tunnel: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), 3000, tc::TunnelType::Server)
+                                let app_tunnel: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), app_port, tc::TunnelType::Server)
                                     .unwrap_or_default();
                                 log::info!("destination: {}", app_tunnel.get_destination());
                                 let _ = app_tunnel.start();

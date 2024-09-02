@@ -26,12 +26,15 @@ curl -v http://localhost:11434/api/generate -d '{ "model": "zephyr-local", "prom
 
 ## start the server 
 
-./i2gpt
+```bash
+RUST_LOG=debug./i2gpt
+```
 
 ## i2p tunnel
 
 * embedded i2p and automatic tunnel generation
 * set the http proxy port with `export I2GPT_I2P_PROXY=xxxx`
-* default is port 4455
+* set the app port with `I2GPT_PORT`
+* default is http proxy port is 4455, app port is 3141
 * .b32.i2p destination will printed in the logs
-* see [j4i2prs](https://github.com/kn0sys/j4-i2p-rs) 
+* see [j4i2prs](https://github.com/kn0sys/j4-i2p-rs) for more info on the embedded i2p
