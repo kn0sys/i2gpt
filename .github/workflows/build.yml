@@ -24,7 +24,7 @@ jobs:
       run: |
         rustup toolchain install nightly
         sudo apt install ant gettext
-        git clone https://github.com/kn0sys/i2p.i2p
+        git clone --depth 1 https://github.com/kn0sys/i2p.i2p
         cd i2p.i2p && ant buildRouter buildI2PTunnelJars buildSAM jbigi buildAddressbook
         mkdir -p /tmp/opt/j4-i2p-rs/jassets && cp build/* /tmp/opt/j4-i2p-rs/jassets/
     - name: build and clippy

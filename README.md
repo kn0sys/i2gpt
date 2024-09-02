@@ -1,3 +1,5 @@
+[![build](https://github.com/kn0sys/i2gpt/actions/workflows/build.yml/badge.svg)](https://github.com/kn0sys/i2gpt/actions/workflows/build.yml)
+
 # i2gpt
 gpt with no js or trackers
 
@@ -27,7 +29,7 @@ curl -v http://localhost:11434/api/generate -d '{ "model": "zephyr-local", "prom
 ## start the server 
 
 ```bash
-RUST_LOG=debug./i2gpt
+RUST_LOG=debug ./i2gpt
 ```
 
 ## i2p tunnel
