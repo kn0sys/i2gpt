@@ -24,12 +24,14 @@ gpt with no js or trackers
 curl -v http://localhost:11434/api/generate -d '{ "model": "zephyr-local", "prompt": "What is water made of?", "stream": false }'
 ```
 
-## serving with pm2
+## start the server 
 
-* https://www.npmjs.com/package/pm2
-* `npm install pm2 -g`
-* `pm2 start ecosystem.config.js`
+./i2gpt
 
 ## i2p tunnel
 
-see [i2p](https://geti2p.net/en/) official documentation for setting up tunnels
+* embedded i2p and automatic tunnel generation
+* set the http proxy port with `export I2GPT_I2P_PROXY=xxxx`
+* default is port 4455
+* .b32.i2p destination will printed in the logs
+* see [j4i2prs](https://github.com/kn0sys/j4-i2p-rs) 
