@@ -3,8 +3,8 @@ gpt with no js or trackers
 
 # getting started
 
-* install sever-side js with [node.js](https://github.com/nvm-sh/nvm)
-* run `npm i`
+* install [rust](https://www.rust-lang.org/tools/install)
+* `cargo run`
 
 
 # setting up the model with ollama

@@ -1,0 +1,31 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+    - name: Install dependencies
+      run: |
+        rustup toolchain install nightly
+        sudo apt install ant gettext
+        git clone https://github.com/kn0sys/i2p.i2p
+        cd i2p.i2p && ant buildRouter buildI2PTunnelJars buildSAM jbigi buildAddressbook
+        mkdir -p /tmp/opt/j4-i2p-rs/jassets && cp build/* /tmp/opt/j4-i2p-rs/jassets/
+    - name: build and clippy
+      run: RUSTFLAGS="-Z threads=4" cargo +nightly build --future-incompat-report && cargo clippy
