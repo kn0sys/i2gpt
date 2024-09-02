@@ -55,10 +55,6 @@ async fn response(search: Option<&str>) -> String {
 
 #[launch]
 async fn rocket() -> _ {
-    let base = std::env::var("J4I2PRS_BASE_PATH").unwrap_or_default();
-    if base.is_empty() {
-        panic!("Set path to i2p assets with: export J4I2PRS_BASE_PATH=opt/j4-i2p-rs")
-    }
     env_logger::init();
     let _ = i2p::start_tunnel();
     let str_port = std::env::var("I2GPT_PORT").unwrap_or(String::from("3141"));

@@ -2,6 +2,8 @@ use std::{thread,fs::File, io::{self, BufRead}, path::Path};
 
 use j4i2prs::router_wrapper as rw;
 use j4i2prs::tunnel_control as tc;
+use j4i2prs::error as e;
+
 use std::sync::mpsc::{
     Receiver,
     Sender,
@@ -33,10 +35,10 @@ where P: AsRef<Path>, {
 }
 
 /// Start router and automatic i2p tunnel creation
-pub fn start_tunnel() -> Result<(), j4rs::errors::J4RsError> {
+pub fn start_tunnel() -> Result<(), e::J4I2PRSError> {
     let str_app_port = std::env::var("I2GPT_PORT").unwrap_or(String::from("3141"));
     let app_port: u16 = str_app_port.parse::<u16>().unwrap_or(3141);
-    let str_http_proxy = std::env::var("I2PGPT_PROXY_PORT").unwrap_or(String::from("4455"));
+    let str_http_proxy = std::env::var("I2GPT_HTTP_PROXY").unwrap_or(String::from("4455"));
     let http_proxy: u16 = str_http_proxy.parse::<u16>().unwrap_or(4455);
     log::info!("starting j4i2prs...");
     let r = rw::Wrapper::create_router()?;

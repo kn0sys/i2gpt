@@ -35,7 +35,7 @@ RUST_LOG=debug ./i2gpt
 ## i2p tunnel
 
 * embedded i2p and automatic tunnel generation
-* set the http proxy port with `export I2GPT_I2P_PROXY=xxxx`
+* set the http proxy port with `export I2GPT_HTTP_PROXY=xxxx`
 * set the app port with `I2GPT_PORT`
 * default is http proxy port is 4455, app port is 3141
 * .b32.i2p destination will printed in the logs
