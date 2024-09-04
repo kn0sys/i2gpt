@@ -81,13 +81,13 @@ pub fn start_tunnel() -> Result<(), e::J4I2PRSError> {
                                 // start the http proxy
                                 let http_proxy: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), http_proxy_port, tc::TunnelType::Http)
                                     .unwrap_or_default();
-                                let _ = http_proxy.start();
+                                let _ = http_proxy.start(None);
                                 log::info!("http proxy on port {}", http_proxy.get_port());
                                 // start the tunnel
                                 let app_tunnel: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), app_port, tc::TunnelType::Server)
                                     .unwrap_or_default();
                                 log::info!("destination: {}", app_tunnel.get_destination());
-                                let _ = app_tunnel.start();
+                                let _ = app_tunnel.start(None);
                             }
                         }
                     }
