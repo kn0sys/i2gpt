@@ -39,7 +39,7 @@ pub fn start_tunnel() -> Result<(), e::J4I2PRSError> {
     let str_app_port = std::env::var("I2GPT_PORT").unwrap_or(String::from("3141"));
     let app_port: u16 = str_app_port.parse::<u16>().unwrap_or(3141);
     let str_http_proxy = std::env::var("I2GPT_HTTP_PROXY").unwrap_or(String::from("4455"));
-    let http_proxy: u16 = str_http_proxy.parse::<u16>().unwrap_or(4455);
+    let http_proxy_port: u16 = str_http_proxy.parse::<u16>().unwrap_or(4455);
     log::info!("starting j4i2prs...");
     let r = rw::Wrapper::create_router()?;
     let mut l: Listener = Default::default();
@@ -79,7 +79,7 @@ pub fn start_tunnel() -> Result<(), e::J4I2PRSError> {
                                 log::info!("this port was randomly assigned, keep it private");
                                 l.is_running = true;
                                 // start the http proxy
-                                let http_proxy: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), http_proxy, tc::TunnelType::Http)
+                                let http_proxy: tc::Tunnel = tc::Tunnel::new("127.0.0.1".to_string(), http_proxy_port, tc::TunnelType::Http)
                                     .unwrap_or_default();
                                 let _ = http_proxy.start();
                                 log::info!("http proxy on port {}", http_proxy.get_port());
