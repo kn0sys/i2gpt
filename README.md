@@ -13,17 +13,17 @@ gpt with no js or trackers
 
 * install [ollama](https://ollama.com/download)
 * `cd models`
-* download the [zephyr 7b-Q5](https://huggingface.co/TheBloke/zephyr-7B-beta-GGUF/blob/main/zephyr-7b-beta.Q5_K_M.gguf) model from huggingface
-* `ollama create zephyr-local -f Modelfile`
+* download the [phi3](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/blob/main/Phi-3-mini-4k-instruct-q4.gguf) model from huggingface
+* `ollama create phi3 -f Modelfile`
 * `ollama list`
-* `ollama run zephyr-local`
+* `ollama run phi3`
 * `/bye` to exit cli
 * `ollama serve`
 
 ## api test
 
 ```bash
-curl -v http://localhost:11434/api/generate -d '{ "model": "zephyr-local", "prompt": "What is water made of?", "stream": false }'
+curl -v http://localhost:11434/api/generate -d '{ "model": "phi3", "prompt": "What is water made of?", "stream": false }'
 ```
 
 ## start the server 
